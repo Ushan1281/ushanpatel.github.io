@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ushan Patel — Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #FAFAF8;
+  --bg2:       #F4F2ED;
+  --bg3:       #ECEAE3;
+  --white:     #FFFFFF;
+  --ink:       #18160F;
+  --ink2:      #2C2A22;
+  --blue:      #2353A4;
+  --blue2:     #1A3F82;
+  --blue-s:    #EBF0FA;
+  --green:     #1E6E56;
+  --green-s:   #E8F5F0;
+  --rust:      #B5522B;
+  --rust-s:    #FAF0EB;
+  --muted:     #7A7668;
+  --muted2:    #ACA89E;
+  --line:      rgba(24,22,15,0.09);
+  --line2:     rgba(24,22,15,0.05);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'DM Sans', sans-serif;
+  font-size:15px; line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:300;
+  height:62px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5rem;
+  background:rgba(250,250,248,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line2);
+}
+.nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.brand-mark {
+  width:32px; height:32px; background:var(--blue);
+  border-radius:6px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Libre Baskerville', serif;
+  font-size:13px; font-weight:700; color:#fff;
+  transition:background 0.2s;
+}
+.nav-brand:hover .brand-mark { background:var(--blue2); }
+.brand-name { font-size:14px; font-weight:500; color:var(--ink); letter-spacing:0.02em; }
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a {
+  font-size:13px; color:var(--muted);
+  text-decoration:none; font-weight:400;
+  letter-spacing:0.03em;
+  transition:color 0.18s;
+}
+.nav-links a:hover { color:var(--ink); }
+.nav-hire {
+  display:inline-block; padding:8px 22px;
+  background:var(--blue); color:#fff;
+  font-size:13px; font-weight:500;
+  text-decoration:none; border-radius:6px;
+  letter-spacing:0.03em;
+  transition:background 0.18s, transform 0.18s;
+}
+.nav-hire:hover { background:var(--blue2); transform:translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  padding:0 5rem;
+  display:grid;
+  grid-template-columns:1fr 400px;
+  align-items:center;
+  gap:5rem;
+  overflow:hidden;
+  position:relative;
+}
+.hero-bg {
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 60% at 75% 50%, rgba(35,83,164,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 70%, rgba(30,110,86,0.03) 0%, transparent 70%);
+}
+
+.hero-left { padding-top:62px; }
+
+.hero-eyebrow {
+  display:flex; align-items:center; gap:10px; margin-bottom:1.75rem;
+  opacity:0; animation:fadeIn 0.6s ease 0.1s forwards;
+}
+.eyebrow-line { width:28px; height:1px; background:var(--blue); }
+.eyebrow-text {
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px; color:var(--blue);
+  letter-spacing:0.12em; text-transform:uppercase;
+}
+
+.hero h1 {
+  font-family:'Libre Baskerville', serif;
+  font-size:clamp(3rem, 5vw, 5rem);
+  font-weight:700; line-height:1.0;
+  letter-spacing:-0.02em; color:var(--ink);
+  margin-bottom:1.25rem;
+  opacity:0; animation:slideUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+}
+.hero h1 em { font-style:italic; color:var(--blue); }
+
+.hero-role {
+  font-size:17px; font-weight:300; color:var(--muted);
+  margin-bottom:1.75rem; letter-spacing:0.01em;
+  opacity:0; animation:slideUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+}
+
+.hero-desc {
+  font-size:15px; color:var(--muted);
+  line-height:1.85; max-width:480px;
+  font-weight:300; margin-bottom:2.5rem;
+  opacity:0; animation:slideUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.38s forwards;
+}
+
+.hero-actions {
+  display:flex; gap:1rem; flex-wrap:wrap;
+  opacity:0; animation:slideUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.46s forwards;
+}
+.btn-fill {
+  display:inline-block; padding:12px 28px;
+  background:var(--blue); color:#fff;
+  font-size:14px; font-weight:500;
+  text-decoration:none; border-radius:6px;
+  letter-spacing:0.03em;
+  transition:background 0.18s, transform 0.18s;
+}
+.btn-fill:hover { background:var(--blue2); transform:translateY(-1px); }
+.btn-line {
+  display:inline-block; padding:11px 26px;
+  background:transparent; color:var(--ink);
+  font-size:14px; font-weight:400;
+  text-decoration:none; border-radius:6px;
+  border:1px solid var(--line);
+  letter-spacing:0.03em;
+  transition:border-color 0.18s, transform 0.18s;
+}
+.btn-line:hover { border-color:rgba(24,22,15,0.25); transform:translateY(-1px); }
+
+/* Hero card */
+.hero-right {
+  padding-top:62px;
+  opacity:0; animation:slideUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+}
+.hcard {
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 2px 32px rgba(24,22,15,0.06);
+}
+.hcard-top {
+  background:var(--blue);
+  padding:2rem 2rem 2.5rem;
+  position:relative; overflow:hidden;
+}
+.hcard-top::after {
+  content:'UP';
+  position:absolute; right:-8px; bottom:-28px;
+  font-family:'Libre Baskerville', serif;
+  font-size:100px; font-weight:700;
+  color:rgba(255,255,255,0.05);
+  line-height:1; pointer-events:none; user-select:none;
+}
+.hcard-avatar {
+  width:50px; height:50px; border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  border:2px solid rgba(255,255,255,0.2);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Libre Baskerville', serif;
+  font-size:17px; font-weight:700; color:#fff;
+  margin-bottom:1rem;
+}
+.hcard-name { font-family:'Libre Baskerville', serif; font-size:1.4rem; font-weight:700; color:#fff; line-height:1.15; }
+.hcard-sub { font-size:12px; color:rgba(255,255,255,0.5); margin-top:4px; font-weight:300; }
+
+.hcard-body { padding:1.5rem 2rem 1.75rem; }
+.hcard-stats { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem; }
+.hs-n { font-family:'Libre Baskerville', serif; font-size:1.9rem; font-weight:700; color:var(--ink); line-height:1; }
+.hs-l { font-size:12px; color:var(--muted); margin-top:2px; font-weight:300; }
+.hcard-sep { height:1px; background:var(--line2); margin-bottom:1.25rem; }
+.hcard-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.htag {
+  font-size:11px; font-family:'JetBrains Mono', monospace;
+  color:var(--muted); background:var(--bg);
+  padding:4px 10px; border-radius:4px;
+  border:1px solid var(--line2);
+}
+
+/* ── STATS BAND ── */
+.stats-band {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line2);
+  border-bottom:1px solid var(--line2);
+  background:var(--white);
+}
+.sb-item {
+  padding:2.5rem 5rem;
+  border-right:1px solid var(--line2);
+  transition:background 0.2s;
+}
+.sb-item:last-child { border-right:none; }
+.sb-item:hover { background:var(--bg2); }
+.sb-n {
+  font-family:'Libre Baskerville', serif;
+  font-size:2.6rem; font-weight:700;
+  color:var(--ink); line-height:1; margin-bottom:5px;
+}
+.sb-l { font-size:13px; color:var(--muted); font-weight:300; }
+
+/* ── SECTION ── */
+.sec { padding:6.5rem 5rem; }
+.sec-alt { background:var(--bg2); }
+
+.sec-label {
+  display:flex; align-items:center; gap:8px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--blue);
+  margin-bottom:0.6rem;
+}
+.sec-dot { width:4px; height:4px; border-radius:50%; background:var(--blue); }
+
+.sec h2 {
+  font-family:'Libre Baskerville', serif;
+  font-size:clamp(2rem, 3vw, 2.8rem);
+  font-weight:700; line-height:1.05;
+  letter-spacing:-0.02em; color:var(--ink);
+  margin-bottom:3rem;
+}
+.sec h2 em { font-style:italic; color:var(--blue); }
+
+/* ── SKILLS ── */
+.skills-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  background:var(--line2); border:1px solid var(--line2);
+}
+.sk-card {
+  background:var(--white); padding:2rem;
+  transition:background 0.18s;
+}
+.sk-card:hover { background:var(--bg); }
+.sk-num {
+  font-family:'JetBrains Mono', monospace; font-size:10px;
+  color:var(--muted2); margin-bottom:0.75rem; letter-spacing:0.06em;
+}
+.sk-head { font-size:14px; font-weight:600; color:var(--ink); margin-bottom:0.9rem; }
+.sk-pills { display:flex; flex-wrap:wrap; gap:5px; }
+.sk-pill {
+  font-size:11px; font-family:'JetBrains Mono', monospace;
+  color:var(--muted); background:var(--bg2);
+  padding:3px 9px; border-radius:4px;
+  border:1px solid var(--line);
+}
+
+/* ── EXPERIENCE ── */
+.exp-layout { display:grid; grid-template-columns:220px 1fr; gap:5rem; }
+.exp-aside { position:sticky; top:74px; align-self:start; }
+.aside-hd {
+  font-family:'JetBrains Mono', monospace; font-size:10px;
+  letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--muted2); margin-bottom:1.25rem;
+}
+.aside-item {
+  padding:0.7rem 0; border-bottom:1px solid var(--line2);
+}
+.aside-date { font-size:11px; font-family:'JetBrains Mono', monospace; color:var(--blue); margin-bottom:3px; }
+.aside-co { font-size:13px; font-weight:400; color:var(--muted); }
+
+.exp-list { display:flex; flex-direction:column; gap:1.25rem; }
+.exp-card {
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:12px; padding:2rem;
+  transition:box-shadow 0.2s, transform 0.2s;
+}
+.exp-card:hover {
+  box-shadow:0 6px 28px rgba(24,22,15,0.07);
+  transform:translateY(-2px);
+}
+.exp-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom:4px; }
+.exp-role { font-size:16px; font-weight:600; color:var(--ink); line-height:1.3; }
+.exp-chip {
+  font-size:11px; font-family:'JetBrains Mono', monospace;
+  color:var(--blue); background:var(--blue-s);
+  border:1px solid rgba(35,83,164,0.15);
+  padding:4px 11px; border-radius:4px; white-space:nowrap;
+}
+.exp-co { font-size:13px; color:var(--rust); font-weight:400; margin-bottom:1rem; }
+.exp-ul { list-style:none; }
+.exp-ul li {
+  font-size:13.5px; color:var(--muted);
+  padding:3px 0 3px 1.25rem;
+  position:relative; line-height:1.75; font-weight:300;
+}
+.exp-ul li::before {
+  content:''; position:absolute;
+  left:0; top:12px; width:4px; height:1px;
+  background:var(--blue);
+}
+
+/* ── PROJECTS ── */
+.proj-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;
+}
+.proj-card {
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:12px; padding:1.75rem;
+  display:flex; flex-direction:column;
+  transition:box-shadow 0.2s, transform 0.2s;
+}
+.proj-card:hover {
+  box-shadow:0 8px 32px rgba(24,22,15,0.08);
+  transform:translateY(-3px);
+}
+.proj-card.feat {
+  grid-column:1/-1;
+  display:grid; grid-template-columns:1fr 1fr; gap:2.5rem;
+  background:var(--ink); border-color:transparent;
+}
+.proj-card.feat .proj-type { color:rgba(255,255,255,0.35); }
+.proj-card.feat .proj-name { color:#fff; font-family:'Libre Baskerville',serif; }
+.proj-card.feat .proj-desc { color:rgba(255,255,255,0.5); }
+.proj-card.feat .sk-pill { background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); }
+.proj-card.feat .plink { color:#7EB5E8; border-color:rgba(126,181,232,0.3); }
+.proj-card.feat:hover { transform:none; box-shadow:none; }
+
+.proj-type {
+  font-size:11px; font-family:'JetBrains Mono', monospace;
+  color:var(--muted2); letter-spacing:0.07em; margin-bottom:0.9rem;
+}
+.proj-name {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.15rem; font-weight:700;
+  color:var(--ink); line-height:1.25; margin-bottom:0.7rem;
+}
+.proj-desc {
+  font-size:13px; color:var(--muted); line-height:1.75;
+  font-weight:300; flex:1; margin-bottom:1.25rem;
+}
+.proj-foot { display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; margin-top:auto; }
+.plink {
+  font-size:12px; font-family:'JetBrains Mono', monospace;
+  color:var(--blue); text-decoration:none;
+  border-bottom:1px solid rgba(35,83,164,0.25);
+  padding-bottom:1px; transition:border-color 0.18s;
+}
+.plink:hover { border-color:var(--blue); }
+
+/* ── EDUCATION ── */
+.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+.edu-card {
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:12px; padding:2rem 2.25rem;
+  display:flex; flex-direction:column; gap:1.5rem;
+  transition:box-shadow 0.2s, transform 0.2s;
+}
+.edu-card:hover {
+  box-shadow:0 6px 28px rgba(24,22,15,0.07);
+  transform:translateY(-2px);
+}
+.edu-chip {
+  display:inline-block;
+  font-size:11px; font-family:'JetBrains Mono', monospace;
+  color:var(--green); background:var(--green-s);
+  border:1px solid rgba(30,110,86,0.18);
+  padding:4px 12px; border-radius:4px;
+  margin-bottom:0.75rem; letter-spacing:0.06em;
+}
+.edu-deg { font-family:'Libre Baskerville', serif; font-size:1.2rem; font-weight:700; color:var(--ink); margin-bottom:5px; line-height:1.25; }
+.edu-sch { font-size:13px; color:var(--rust); font-weight:400; margin-bottom:3px; }
+.edu-loc { font-size:13px; color:var(--muted); font-weight:300; }
+.edu-bottom { display:flex; justify-content:space-between; align-items:flex-end; }
+.edu-score { font-family:'Libre Baskerville', serif; font-size:2.8rem; font-weight:700; color:var(--ink); line-height:1; }
+.edu-sl { font-size:12px; color:var(--muted); margin-top:2px; }
+.edu-period { font-size:12px; font-family:'JetBrains Mono', monospace; color:var(--muted2); text-align:right; }
+
+/* ── CONTACT ── */
+.contact-box {
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:16px; overflow:hidden;
+  box-shadow:0 4px 40px rgba(24,22,15,0.06);
+}
+.contact-top {
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem;
+  padding:4rem;
+  background:var(--blue);
+  position:relative; overflow:hidden;
+}
+.contact-top::after {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+}
+.contact-deco {
+  position:absolute; right:-20px; bottom:-50px;
+  font-family:'Libre Baskerville', serif;
+  font-size:220px; font-weight:700;
+  color:rgba(255,255,255,0.03);
+  line-height:1; pointer-events:none; user-select:none;
+  letter-spacing:-0.04em;
+}
+.contact-title {
+  font-family:'Libre Baskerville', serif;
+  font-size:clamp(1.75rem,2.8vw,2.5rem);
+  font-weight:700; color:#fff; line-height:1.1; margin-bottom:1rem;
+}
+.contact-title em { font-style:italic; color:rgba(255,255,255,0.7); }
+.contact-sub { font-size:14px; color:rgba(255,255,255,0.5); line-height:1.8; font-weight:300; margin-bottom:2rem; }
+.contact-cta {
+  display:inline-block; padding:12px 28px;
+  background:#fff; color:var(--blue);
+  font-size:14px; font-weight:600;
+  text-decoration:none; border-radius:6px;
+  letter-spacing:0.03em;
+  transition:background 0.18s, transform 0.18s;
+}
+.contact-cta:hover { background:rgba(255,255,255,0.9); transform:translateY(-1px); }
+
+.clinks { display:flex; flex-direction:column; gap:10px; position:relative; z-index:1; }
+.crow {
+  display:flex; align-items:center; gap:12px;
+  padding:1rem 1.25rem;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px; text-decoration:none;
+  transition:background 0.18s;
+}
+.crow:hover { background:rgba(255,255,255,0.12); }
+.crow-icon {
+  width:34px; height:34px;
+  background:rgba(255,255,255,0.1);
+  border-radius:7px; display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono', monospace; font-size:12px;
+  color:rgba(255,255,255,0.5); flex-shrink:0;
+}
+.crow-lbl { font-size:11px; color:rgba(255,255,255,0.35); font-family:'JetBrains Mono', monospace; letter-spacing:0.06em; margin-bottom:1px; }
+.crow-val { font-size:13px; color:rgba(255,255,255,0.8); font-weight:400; }
+
+.contact-bottom {
+  padding:1.75rem 4rem;
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:1rem;
+  background:var(--bg2);
+  border-top:1px solid var(--line2);
+}
+.cb-t { font-size:13px; color:var(--muted); font-weight:300; }
+
+/* ── FOOTER ── */
+footer {
+  padding:1.75rem 5rem;
+  display:flex; justify-content:space-between; align-items:center;
+  border-top:1px solid var(--line2);
+}
+footer p { font-size:12px; color:var(--muted2); font-family:'JetBrains Mono', monospace; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn  { from{opacity:0;} to{opacity:1;} }
+@keyframes slideUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
+
+.reveal {
+  opacity:0; transform:translateY(20px);
+  transition:opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.in { opacity:1; transform:none; }
+.d1{transition-delay:0.07s;} .d2{transition-delay:0.14s;}
+.d3{transition-delay:0.21s;} .d4{transition-delay:0.28s;}
+.d5{transition-delay:0.35s;} .d6{transition-delay:0.42s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 1.5rem;} .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:5.5rem 1.5rem 3rem;}
+  .hero-right{display:none;}
+  .stats-band{grid-template-columns:1fr 1fr;}
+  .sb-item{padding:2rem 1.5rem;}
+  .sec{padding:4.5rem 1.5rem;}
+  .skills-grid,.proj-grid{grid-template-columns:1fr;}
+  .proj-card.feat{grid-template-columns:1fr;}
+  .exp-layout{grid-template-columns:1fr;}
+  .exp-aside{display:none;}
+  .edu-grid{grid-template-columns:1fr;}
+  .contact-top{grid-template-columns:1fr;padding:2.5rem 1.5rem;gap:2.5rem;}
+  .contact-bottom{padding:1.5rem;flex-direction:column;align-items:flex-start;}
+  footer{padding:1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="brand-mark">UP</div>
+    <span class="brand-name">Ushan Patel</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:vraj12082001@gmail.com" class="nav-hire">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Software Developer</span>
+    </div>
+    <h1>Ushan <em>Patel</em></h1>
+    <div class="hero-role">Full-Stack Developer &amp; Systems Architect</div>
+    <p class="hero-desc">Building enterprise ERP solutions, scalable cloud infrastructure, and data-intensive web applications — for clients across India and internationally.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-fill">View My Work</a>
+      <a href="#contact" class="btn-line">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hcard">
+      <div class="hcard-top">
+        <div class="hcard-avatar">UP</div>
+        <div class="hcard-name">Ushan Patel</div>
+        <div class="hcard-sub">Software Developer · Vadodara, India</div>
+      </div>
+      <div class="hcard-body">
+        <div class="hcard-stats">
+          <div><div class="hs-n">3+</div><div class="hs-l">Years experience</div></div>
+          <div><div class="hs-n">5+</div><div class="hs-l">Int'l clients</div></div>
+          <div><div class="hs-n">40+</div><div class="hs-l">ERP sites managed</div></div>
+          <div><div class="hs-n">8.15</div><div class="hs-l">B.Tech CGPA</div></div>
+        </div>
+        <div class="hcard-sep"></div>
+        <div class="hcard-tags">
+          <span class="htag">React</span><span class="htag">Django</span>
+          <span class="htag">Frappe</span><span class="htag">Flutter</span>
+          <span class="htag">AWS</span><span class="htag">ERPNext</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="sb-item reveal"><div class="sb-n">3+</div><div class="sb-l">Years of professional experience</div></div>
+  <div class="sb-item reveal d1"><div class="sb-n">6</div><div class="sb-l">Major projects delivered</div></div>
+  <div class="sb-item reveal d2"><div class="sb-n">40+</div><div class="sb-l">Active ERP project sites</div></div>
+  <div class="sb-item reveal d3"><div class="sb-n">10+</div><div class="sb-l">Technologies mastered</div></div>
+</div>
+
+<!-- SKILLS -->
+<section class="sec sec-alt" id="skills">
+  <div class="sec-label"><div class="sec-dot"></div>Technical Expertise</div>
+  <h2 class="reveal">Core <em>Capabilities</em></h2>
+  <div class="skills-grid">
+    <div class="sk-card reveal d1"><div class="sk-num">01</div><div class="sk-head">Languages</div><div class="sk-pills"><span class="sk-pill">Python</span><span class="sk-pill">JavaScript</span><span class="sk-pill">Java</span><span class="sk-pill">PHP</span><span class="sk-pill">Dart</span><span class="sk-pill">C++</span><span class="sk-pill">C</span><span class="sk-pill">HTML/CSS</span></div></div>
+    <div class="sk-card reveal d2"><div class="sk-num">02</div><div class="sk-head">Frontend &amp; Mobile</div><div class="sk-pills"><span class="sk-pill">React JS</span><span class="sk-pill">Flutter</span><span class="sk-pill">JSF</span></div></div>
+    <div class="sk-card reveal d3"><div class="sk-num">03</div><div class="sk-head">Backend &amp; Frameworks</div><div class="sk-pills"><span class="sk-pill">Django REST</span><span class="sk-pill">Spring Boot</span><span class="sk-pill">Frappe</span><span class="sk-pill">ERPNext</span></div></div>
+    <div class="sk-card reveal d4"><div class="sk-num">04</div><div class="sk-head">Cloud &amp; DevOps</div><div class="sk-pills"><span class="sk-pill">AWS</span><span class="sk-pill">DigitalOcean</span><span class="sk-pill">Docker</span><span class="sk-pill">Git</span><span class="sk-pill">AWS S3</span></div></div>
+    <div class="sk-card reveal d5"><div class="sk-num">05</div><div class="sk-head">Databases</div><div class="sk-pills"><span class="sk-pill">MySQL</span><span class="sk-pill">SQL</span><span class="sk-pill">Stored Procedures</span></div></div>
+    <div class="sk-card reveal d6"><div class="sk-num">06</div><div class="sk-head">ERP &amp; Enterprise</div><div class="sk-pills"><span class="sk-pill">Frappe CRM</span><span class="sk-pill">ERPNext</span><span class="sk-pill">Custom Doctypes</span><span class="sk-pill">Workflow Design</span></div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="sec-label"><div class="sec-dot"></div>Work History</div>
+  <h2 class="reveal">Professional <em>Experience</em></h2>
+  <div class="exp-layout">
+    <div class="exp-aside reveal">
+      <div class="aside-hd">Timeline</div>
+      <div class="aside-item"><div class="aside-date">08/2025 – Present</div><div class="aside-co">Heeru Group</div></div>
+      <div class="aside-item"><div class="aside-date">11/2024 – Present</div><div class="aside-co">MarsAIX</div></div>
+      <div class="aside-item"><div class="aside-date">06/2023 – Present</div><div class="aside-co">Marsbazaar.com</div></div>
+      <div class="aside-item"><div class="aside-date">01/2023 – 06/2023</div><div class="aside-co">Marsbazaar (Intern)</div></div>
+    </div>
+    <div class="exp-list">
+      <div class="exp-card reveal">
+        <div class="exp-top"><div class="exp-role">ERPNext Implementation Lead</div><span class="exp-chip">08/2025 – Present</span></div>
+        <div class="exp-co">Heeru Group · Vadodara, India</div>
+        <ul class="exp-ul">
+          <li>Led greenfield ERPNext implementation, transitioning from manual processes to a complete ERP system</li>
+          <li>Delivered core modules: Accounts, Projects, HRMS, CRM, and Financials</li>
+          <li>Designed customised project costing workflows for corrosion protection operations</li>
+          <li>Built a custom EHS module for compliance and on-site safety requirements</li>
+          <li>Managed end-to-end lifecycle of 40+ active project sites across India</li>
+          <li>Owned solution architecture, custom doctypes, workflows, scripting, and user training</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal d1">
+        <div class="exp-top"><div class="exp-role">Frappe ERP Developer</div><span class="exp-chip">11/2024 – Present</span></div>
+        <div class="exp-co">MarsAIX · Gujarat, India</div>
+        <ul class="exp-ul">
+          <li>Designed custom Frappe-based ERP for industrial real estate sales and development workflows</li>
+          <li>Built a data-intensive land evaluation system capturing 120+ attributes per parcel</li>
+          <li>Implemented land identification, evaluation, acquisition, and approval management</li>
+          <li>Developed regulatory tracking for industrial approvals and compliance</li>
+          <li>Owned data modelling, workflow orchestration, dashboards, and architecture</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal d2">
+        <div class="exp-top"><div class="exp-role">System Administrator &amp; Full-Stack Developer</div><span class="exp-chip">06/2023 – Present</span></div>
+        <div class="exp-co">Marsbazaar.com · Gujarat, India</div>
+        <ul class="exp-ul">
+          <li>Led cloud infrastructure management (AWS, DigitalOcean) for international clients</li>
+          <li>Delivered full-stack solutions using React, Django, and Frappe for global clients</li>
+          <li>Optimised backend systems and managed SQL databases for scalability</li>
+          <li>Built Java solutions using Spring Boot and JSF for diverse client requirements</li>
+          <li>Mentored the development team ensuring timely, high-quality delivery</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal d3">
+        <div class="exp-top"><div class="exp-role">Flutter Developer Intern</div><span class="exp-chip">01/2023 – 06/2023</span></div>
+        <div class="exp-co">Marsbazaar.com · Gujarat, India</div>
+        <ul class="exp-ul">
+          <li>Developed a functional Flutter admin application for the Mars Bazaar platform</li>
+          <li>Built JavaScript APIs enabling seamless integration between the app and Wix.com</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec sec-alt" id="projects">
+  <div class="sec-label"><div class="sec-dot"></div>Selected Work</div>
+  <h2 class="reveal">Featured <em>Projects</em></h2>
+  <div class="proj-grid">
+    <div class="proj-card feat reveal">
+      <div>
+        <div class="proj-type">International · Pharma · Web Application</div>
+        <div class="proj-name">Grintech — Pharmaceutical Testing Platform</div>
+      </div>
+      <div style="display:flex;flex-direction:column;">
+        <p class="proj-desc">Frappe-based application for pharmaceutical equipment testing in cleanroom environments. Features multimedia attachments, simultaneous video playback, automatic data population, draft &amp; final report generation with signatures, user access controls, and task reminders.</p>
+        <div class="proj-foot">
+          <a href="https://grintechgroup.com/" target="_blank" class="plink">grintechgroup.com ↗</a>
+          <div class="sk-pills"><span class="sk-pill">Frappe</span><span class="sk-pill">Python</span><span class="sk-pill">MySQL</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card reveal d1">
+      <div class="proj-type">Medtech · Web Portal</div>
+      <div class="proj-name">Smart X-ray System</div>
+      <p class="proj-desc">Frappe-based portal for a smart X-ray system. Automated doctor assignment, report generation, and streamlined transaction management.</p>
+      <div class="proj-foot">
+        <a href="https://www.codemedtech.ai/" target="_blank" class="plink">codemedtech.ai ↗</a>
+        <div class="sk-pills"><span class="sk-pill">Frappe</span><span class="sk-pill">Python</span></div>
+      </div>
+    </div>
+    <div class="proj-card reveal d2">
+      <div class="proj-type">Desktop Application</div>
+      <div class="proj-name">Codemed Agent</div>
+      <p class="proj-desc">Python Tkinter desktop app integrating with Frappe to auto-process and upload X-ray images with real-time progress visualisation.</p>
+      <div class="proj-foot">
+        <a href="https://www.codemedtech.ai/" target="_blank" class="plink">codemedtech.ai ↗</a>
+        <div class="sk-pills"><span class="sk-pill">Python</span><span class="sk-pill">Tkinter</span></div>
+      </div>
+    </div>
+    <div class="proj-card reveal d3">
+      <div class="proj-type">International · Securities</div>
+      <div class="proj-name">Dacbond SEC Software</div>
+      <p class="proj-desc">Securities compliance portal for Tax Compliance, Due Diligence, and Securities management with SQL stored procedures and AWS S3 document handling.</p>
+      <div class="proj-foot">
+        <a href="https://www.dacbond.com/newdac/" target="_blank" class="plink">dacbond.com ↗</a>
+        <div class="sk-pills"><span class="sk-pill">Java</span><span class="sk-pill">SQL</span><span class="sk-pill">AWS</span></div>
+      </div>
+    </div>
+    <div class="proj-card reveal d4">
+      <div class="proj-type">International · Tax Compliance</div>
+      <div class="proj-name">PICT Tax Platform</div>
+      <p class="proj-desc">Tax compliance platform with AWS S3 upload, tree-structured tables for user-client relationships, bonds, and project expenditure tracking.</p>
+      <div class="proj-foot">
+        <a href="https://www.dacbond.com/newdac/" target="_blank" class="plink">dacbond.com ↗</a>
+        <div class="sk-pills"><span class="sk-pill">Java</span><span class="sk-pill">JSF</span><span class="sk-pill">AWS S3</span></div>
+      </div>
+    </div>
+    <div class="proj-card reveal d5">
+      <div class="proj-type">Mobile Application</div>
+      <div class="proj-name">Marsbazaar Admin App</div>
+      <p class="proj-desc">Flutter admin app with Employee Attendance, Company Lead Management, Task Assessment Notifications, and Employee Management modules.</p>
+      <div class="proj-foot">
+        <div class="sk-pills"><span class="sk-pill">Flutter</span><span class="sk-pill">Dart</span><span class="sk-pill">JS API</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sec" id="education">
+  <div class="sec-label"><div class="sec-dot"></div>Academic Background</div>
+  <h2 class="reveal">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal d1">
+      <div>
+        <div class="edu-chip">Jun 2019 — May 2023</div>
+        <div class="edu-deg">B.Tech — Computer Science &amp; Engineering</div>
+        <div class="edu-sch">ITM (SLS) Baroda University</div>
+        <div class="edu-loc">Paldi, Vadodara, Gujarat, India</div>
+      </div>
+      <div class="edu-bottom">
+        <div><div class="edu-score">8.15</div><div class="edu-sl">CGPA</div></div>
+        <div class="edu-period">Jun 2019<br>May 2023</div>
+      </div>
+    </div>
+    <div class="edu-card reveal d2">
+      <div>
+        <div class="edu-chip">Jun 2017 — May 2019</div>
+        <div class="edu-deg">12th Grade — HSB</div>
+        <div class="edu-sch">Phoenix School</div>
+        <div class="edu-loc">Makarpura Rd, Vadodara, Gujarat, India</div>
+      </div>
+      <div class="edu-bottom">
+        <div><div class="edu-score">56%</div><div class="edu-sl">Percentage</div></div>
+        <div class="edu-period">Jun 2017<br>May 2019</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec sec-alt" id="contact">
+  <div class="sec-label"><div class="sec-dot"></div>Let's Connect</div>
+  <h2 class="reveal">Open to New <em>Opportunities</em></h2>
+  <div class="contact-box reveal">
+    <div class="contact-top">
+      <div class="contact-deco">UP</div>
+      <div style="position:relative;z-index:1;">
+        <div class="contact-title">Let's build something <em>great</em> together</div>
+        <p class="contact-sub">Whether it's a full-time role, a complex enterprise project, or an international collaboration — I'd love to explore how I can add value to your team.</p>
+        <a href="mailto:vraj12082001@gmail.com" class="contact-cta">Send Me an Email</a>
+      </div>
+      <div class="clinks">
+        <a href="mailto:vraj12082001@gmail.com" class="crow">
+          <div class="crow-icon">@</div>
+          <div><div class="crow-lbl">EMAIL</div><div class="crow-val">vraj12082001@gmail.com</div></div>
+        </a>
+        <a href="tel:+919510372889" class="crow">
+          <div class="crow-icon">#</div>
+          <div><div class="crow-lbl">PHONE</div><div class="crow-val">+91 95103 72889</div></div>
+        </a>
+        <a href="https://github.com/Ushan1281" target="_blank" class="crow">
+          <div class="crow-icon">&lt;/&gt;</div>
+          <div><div class="crow-lbl">GITHUB</div><div class="crow-val">github.com/Ushan1281</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-bottom">
+      <span class="cb-t">Vadodara, Gujarat, India &nbsp;·&nbsp; Open to remote &amp; relocation</span>
+      <span class="cb-t" style="font-family:'JetBrains Mono',monospace;font-size:12px;">vraj12082001@gmail.com</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Ushan Patel</p>
+  <p>Software Developer · Vadodara, India</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
